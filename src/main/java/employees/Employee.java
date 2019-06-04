@@ -12,20 +12,30 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     private String name;
 
     private int salary;
 
     private LocalDateTime savedAt;
 
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<Address> addresses = new ArrayList<>();
+
+    public Employee() {
+    }
+
+    public Employee(Long id, String name, int salary, List<Address> addresses) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+        this.addresses = addresses;
+        addresses.stream().forEach(a -> a.setEmployee(this));
+    }
+
     @PrePersist
     public void initSavedAtValue() {
         savedAt = LocalDateTime.now();
     }
-
-    @OneToMany(mappedBy = "employee",cascade = CascadeType.ALL)
-    private List<Address> addresses = new ArrayList<>();
 
     public void addAddress(Address address) {
         addresses.add(address);

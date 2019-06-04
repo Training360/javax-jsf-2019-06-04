@@ -18,6 +18,16 @@ public class Address {
     @ManyToOne
     private Employee employee;
 
+    public Address() {
+    }
+
+    public Address(Long id, String zip, String city, String line1) {
+        this.id = id;
+        this.zip = zip;
+        this.city = city;
+        this.line1 = line1;
+    }
+
     public Long getId() {
         return id;
     }
