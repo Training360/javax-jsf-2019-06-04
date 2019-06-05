@@ -3,6 +3,8 @@ package employees;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
+import javax.faces.context.FacesContext;
+
 @Component
 @RequestScope
 public class EmployeeDetailsController {
@@ -11,14 +13,18 @@ public class EmployeeDetailsController {
 
     private long id;
 
-    private EmployeeDto employee;
+    private ModifyEmployeeCommand command = new ModifyEmployeeCommand();
 
     public EmployeeDetailsController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
     public void findEmployeeById() {
-        employee = employeeService.findEmployeeById(id);
+            var employee = employeeService.findEmployeeById(id);
+            command = new ModifyEmployeeCommand();
+            command.setId(employee.getId());
+            command.setName(employee.getName());
+            command.setSalary(employee.getSalary());
     }
 
     public void setId(long id) {
@@ -29,7 +35,21 @@ public class EmployeeDetailsController {
         return id;
     }
 
-    public EmployeeDto getEmployee() {
-        return employee;
+    public ModifyEmployeeCommand getCommand() {
+        return command;
+    }
+
+    public String modifyEmployee() {
+        employeeService.modifyEmployee(command);
+        FacesContext.getCurrentInstance()
+                .getExternalContext()
+                .getFlash()
+                .put("successMessage", "Employess has modified with name " + command.getName());
+
+        return "index.xhtml?faces-redirect=true";
+    }
+
+    public void setCommand(ModifyEmployeeCommand command) {
+        this.command = command;
     }
 }

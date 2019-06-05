@@ -8,10 +8,15 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       >
-<head>
+<h:head>
     <title>Title</title>
-</head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF8" />
+    <h:outputStylesheet library="webjars" name="/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <h:outputStylesheet library="css" name="employees.css"/>
+</h:head>
 <body>
+    <main class="container">
+
     <h1>Employees</h1>
 
     <c:if test="#{flash.containsKey('successMessage')}">
@@ -23,12 +28,19 @@
     <p>#{indexController.names}</p>
 
     <h:dataTable value="#{indexController.employees}" var="employee"
-        border="1">
+        styleClass="table table-striped"
+        rowClass="#{employee.salary > 200000 ? 'table-danger' : ''}"
+        >
         <h:column>
+            <f:facet name="header">
+                Id
+            </f:facet>
             #{employee.id}
         </h:column>
         <h:column>
-
+            <f:facet name="header">
+                Name
+            </f:facet>
 
             <h:link outcome="employee-details.xhtml"
                     value="#{employee.name}">
@@ -36,9 +48,15 @@
             </h:link>
         </h:column>
         <h:column>
+            <f:facet name="header">
+                Salary
+            </f:facet>
             #{employee.salary}
         </h:column>
         <h:column>
+            <f:facet name="header">
+                Cities
+            </f:facet>
             #{employee.cities}
         </h:column>
     </h:dataTable>
@@ -46,6 +64,8 @@
     <p>
         <h:link value="Create employee" outcome="create-employee.xhtml" />
     </p>
+
+    </main>
 
 </body>
 </html>

@@ -19,7 +19,13 @@
     <f:viewAction action="#{employeeDetailsController.findEmployeeById}" />
 </f:metadata>
 
-    <p>#{employeeDetailsController.employee.name}</p>
+    <h:form>
+        <h:inputHidden value="#{employeeDetailsController.command.id}" />
+    <h:inputText value="#{employeeDetailsController.command.name}"/>
+    <h:inputText value="#{employeeDetailsController.command.salary}"/>
+    <h:commandButton value="Modify employee"
+                     action="#{employeeDetailsController.modifyEmployee()}"/>
+    </h:form>
 
 </body>
 </html>
