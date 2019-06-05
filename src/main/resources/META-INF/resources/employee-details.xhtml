@@ -12,27 +12,9 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Employees</h1>
+    <h1>Employee details</h1>
 
-    <p>#{indexController.message}</p>
 
-    <p>#{indexController.names}</p>
-
-    <h:dataTable value="#{indexController.employees}" var="employee"
-        border="1">
-        <h:column>
-            #{employee.id}
-        </h:column>
-        <h:column>
-            #{employee.name}
-        </h:column>
-        <h:column>
-            #{employee.salary}
-        </h:column>
-        <h:column>
-            #{employee.cities}
-        </h:column>
-    </h:dataTable>
 
 </body>
 </html>
