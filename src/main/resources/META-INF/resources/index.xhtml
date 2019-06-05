@@ -14,6 +14,10 @@
 <body>
     <h1>Employees</h1>
 
+    <c:if test="#{flash.containsKey('successMessage')}">
+        #{flash.successMessage}
+    </c:if>
+
     <p>#{indexController.message}</p>
 
     <p>#{indexController.names}</p>
@@ -38,6 +42,10 @@
             #{employee.cities}
         </h:column>
     </h:dataTable>
+
+    <p>
+        <h:link value="Create employee" outcome="create-employee.xhtml" />
+    </p>
 
 </body>
 </html>

@@ -45,4 +45,13 @@ public class EmployeeService {
     public void deleteEmployee(DeleteEmployeeCommand command) {
         employeeRepository.deleteById(command.getId());
     }
+
+    public List<Integer> listSalaryOptions() {
+        return List.of(100_000, 200_000, 500_000);
+    }
+
+    public List<CodeElement> listCodeElements() {
+        return List.of(new CodeElement(100_000, "szazezer"),
+                new CodeElement(200_000, "ketszazezer"));
+    }
 }

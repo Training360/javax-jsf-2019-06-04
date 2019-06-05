@@ -12,14 +12,14 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Employee details</h1>
+    <h1>Welcome</h1>
 
-<f:metadata>
-    <f:viewParam name="id" value="#{employeeDetailsController.id}" />
-    <f:viewAction action="#{employeeDetailsController.findEmployeeById}" />
-</f:metadata>
+    <h:form>
+        <h:inputText value="#{welcomeController.name}" />
+        <h:commandButton value="Say hello!" />
+    </h:form>
 
-    <p>#{employeeDetailsController.employee.name}</p>
+    <p>#{welcomeController.name}</p>
 
 </body>
 </html>
