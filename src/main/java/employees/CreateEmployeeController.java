@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.util.List;
 
@@ -34,7 +35,12 @@ public class CreateEmployeeController {
         FacesContext.getCurrentInstance()
                 .getExternalContext()
                 .getFlash()
-                .put("successMessage", "Employess has created with name " + command.getName());
+                .setKeepMessages(true);
+
+        FacesContext.getCurrentInstance()
+                .addMessage(null,
+                        new FacesMessage("Employess has created with name "
+                                + command.getName()));
 
         return "index.xhtml?faces-redirect=true";
     }

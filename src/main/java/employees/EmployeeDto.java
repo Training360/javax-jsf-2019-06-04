@@ -1,5 +1,7 @@
 package employees;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 public class EmployeeDto {
@@ -10,12 +12,15 @@ public class EmployeeDto {
 
     private int salary;
 
+    private LocalDateTime savedAt;
+
     private String cities;
 
     public EmployeeDto(Employee employee) {
         id = employee.getId();
         name = employee.getName();
         salary = employee.getSalary();
+        savedAt = employee.getSavedAt();
         cities = employee.getAddresses().stream()
                 .map(Address::getCity)
                 .collect(Collectors.joining(", "));
@@ -51,5 +56,13 @@ public class EmployeeDto {
 
     public void setCities(String cities) {
         this.cities = cities;
+    }
+
+    public LocalDateTime getSavedAt() {
+        return savedAt;
+    }
+
+    public void setSavedAt(LocalDateTime savedAt) {
+        this.savedAt = savedAt;
     }
 }

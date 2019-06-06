@@ -74,4 +74,11 @@ public class Employee {
         this.addresses = addresses;
     }
 
+    public LocalDateTime getSavedAt() {
+        return savedAt;
+    }
+
+    public void setSavedAt(LocalDateTime savedAt) {
+        this.savedAt = savedAt;
+    }
 }
