@@ -30,6 +30,15 @@ public class CreateEmployeeController {
     }
 
     public String createEmployee() {
+
+        var count = employeeService.findEmployeeCountWithName(command.getName());
+        if (count > 0) {
+            FacesContext.getCurrentInstance()
+                    .addMessage(null,
+                            new FacesMessage(FacesMessage.SEVERITY_ERROR, "Name already exists!", ""));
+            return null;
+        }
+
         employeeService.createEmployee(command);
 
         FacesContext.getCurrentInstance()

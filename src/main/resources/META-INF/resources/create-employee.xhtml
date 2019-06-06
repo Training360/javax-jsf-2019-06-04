@@ -8,30 +8,47 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       >
 
-<head>
+<h:head>
     <title>Title</title>
-</head>
-<body>
+    <h:outputStylesheet library="webjars" name="/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <h:outputStylesheet library="css" name="employees.css"/>
+</h:head>
+<h:body>
 
-<f:view transient="true">
+<main class="container">
 <h1>Welcome</h1>
 
+    <h:messages styleClass="alert alert-danger" globalOnly="true" />
+
+    #{facesContext.messageList}
+
 <h:form>
-    <h:inputText value="#{createEmployeeController.command.name}"
-        a:autofocus="true"/>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <h:inputText id="name" value="#{createEmployeeController.command.name}"
+            a:autofocus="true" styleClass="form-control #{component.valid ? '' : 'is-invalid'}" >
+        </h:inputText>
+        <h:message for="name" styleClass="invalid-feedback" />
+    </div>
+
     <!-- <h:inputText value="#{createEmployeeController.command.salary}"/> -->
 
-    <h:selectOneMenu value="#{createEmployeeController.command.salary}">
-        <f:selectItems value="#{createEmployeeController.salaryOptions}" var="n"
-                       itemLabel="#{n.name}" itemValue="#{n.code}"/>
-    </h:selectOneMenu>
+    <div class="form-group">
+        <label for="salary">Salary</label>
+        <h:selectOneMenu id="salary" value="#{createEmployeeController.command.salary}"
+            styleClass="form-control #{component.valid ? '' : 'is-invalid'}">
+            <f:selectItems value="#{createEmployeeController.salaryOptions}" var="n"
+                           itemLabel="#{n.name}" itemValue="#{n.code}"/>
+        </h:selectOneMenu>
+        <h:message for="salary" styleClass="invalid-feedback" />
+    </div>
 
     <h:commandButton value="Create employee"
-        action="#{createEmployeeController.createEmployee()}"/>
+        action="#{createEmployeeController.createEmployee()}" styleClass="btn btn-primary"/>
 
 </h:form>
 
-</f:view>
+</main>
 
-</body>
+</h:body>
 </html>

@@ -52,6 +52,13 @@ public class EmployeeService {
 
     public List<CodeElement> listCodeElements() {
         return List.of(new CodeElement(100_000, "szazezer"),
-                new CodeElement(200_000, "ketszazezer"));
+                new CodeElement(200_000, "ketszazezer"),
+                new CodeElement(200_001, "ketszazezer-egy"),
+                new CodeElement(200_030, "ketszazezer-harminc"));
+    }
+
+    public int findEmployeeCountWithName(String name) {
+        return
+                employeeRepository.findEmployeeCountWithName(name);
     }
 }

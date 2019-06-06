@@ -1,9 +1,14 @@
 package employees;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
 public class CreateEmployeeCommand {
 
+    @NotBlank
     private String name;
 
+    @DivBy(number = 50)
     private int salary;
 
     public CreateEmployeeCommand() {
