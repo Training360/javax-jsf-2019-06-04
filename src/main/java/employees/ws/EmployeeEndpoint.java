@@ -4,6 +4,8 @@ import employees.EmployeeService;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +19,8 @@ public class EmployeeEndpoint {
         this.employeeService = employeeService;
     }
 
+    @XmlElement(name = "employee")
+    @XmlElementWrapper(name = "employees")
     public List<EmployeeWsDto> listEmployees() {
         return employeeService.listEmployees()
                 .stream().map(EmployeeWsDto::new)
