@@ -12,6 +12,8 @@ public class WelcomeController {
 
     private String name;
 
+    private String message;
+
     public String getName() {
         return name;
     }
@@ -23,5 +25,10 @@ public class WelcomeController {
     public void sayHello() {
         FacesContext.getCurrentInstance()
                 .addMessage(null, new FacesMessage("Hello " + name + "!"));
+        message = "retwretwer " + name;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

@@ -6,6 +6,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       >
+<f:view locale="#{localeController.locale}">
+
 <h:head>
     <title>Title</title>
     <h:outputStylesheet library="webjars" name="/bootstrap/4.3.1/css/bootstrap.min.css"/>
@@ -14,7 +16,16 @@
 <body>
     <main class="container">
 
-    <h1>Employees</h1>
+    <h1>#{msgs.list_employees_header}</h1>
+
+        <p>#{view.locale}</p>
+
+        <h:form>
+        <h:commandLink action="#{localeController.changeLocale('hu')}"
+                       value="Magyar" />
+        <h:commandLink action="#{localeController.changeLocale('en')}"
+                       value="English" />
+        </h:form>
 
         <h:messages styleClass="alert alert-success" />
 
@@ -22,7 +33,7 @@
 
     <p>#{indexController.names}</p>
 
-        <h:form>
+        <h:form id="employeeTable">
     <h:dataTable value="#{indexController.employees}" var="employee"
         styleClass="table table-striped"
         rowClass="#{employee.salary > 200000 ? 'table-danger' : ''}"
@@ -68,7 +79,9 @@
         <h:column>
             <h:commandButton value="Delete"
                              action="#{indexController.deleteEmployee(employee)}"
-                onclick="return confirm('Are you sure?');"/>
+                >
+                <f:ajax execute="@form" render="@all" />
+            </h:commandButton>
         </h:column>
     </h:dataTable>
         </h:form>
@@ -80,4 +93,5 @@
     </main>
 
 </body>
+</f:view>
 </html>

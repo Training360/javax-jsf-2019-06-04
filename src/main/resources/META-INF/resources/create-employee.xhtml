@@ -23,10 +23,12 @@
     #{facesContext.messageList}
 
 <h:form>
+
     <div class="form-group">
         <label for="name">Name</label>
         <h:inputText id="name" value="#{createEmployeeController.command.name}"
-            a:autofocus="true" styleClass="form-control #{component.valid ? '' : 'is-invalid'}" >
+            a:autofocus="true" styleClass="form-control #{component.valid ? '' : 'is-invalid'}"
+            binding="#{nameInputText}">
         </h:inputText>
         <h:message for="name" styleClass="invalid-feedback" />
     </div>
