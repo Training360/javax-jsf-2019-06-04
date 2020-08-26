@@ -1,4 +1,4 @@
-@XmlSchema(namespace = "http://ksh.hu/employees",
+@XmlSchema(namespace = "http://training360.com/employees",
     elementFormDefault = XmlNsForm.QUALIFIED)
 package employees.ws;
 

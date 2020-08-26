@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@WebService(targetNamespace = "http://ksh.hu/employees")
+@WebService(targetNamespace = "http://training360.com/employees")
 public class EmployeeEndpoint {
 
     private EmployeeService employeeService;
